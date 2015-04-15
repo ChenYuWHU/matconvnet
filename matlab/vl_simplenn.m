@@ -149,6 +149,10 @@ for i=1:n
   l = net.layers{i} ;
   res(i).time = tic ;
   switch l.type
+%% yu
+    case 'para_esti'
+      res(i+1).x = yu_PE(res(i).x, l.patchsize, l.pad, l.stride);
+%
     case 'conv'
       res(i+1).x = vl_nnconv(res(i).x, l.filters, l.biases, 'pad', l.pad, 'stride', l.stride) ;
     case 'pool'
